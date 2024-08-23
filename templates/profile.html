@@ -1,12 +1,16 @@
 {{define "title"}}Profile: {{.FirstName}} {{.LastName}}{{end}}
 
 {{define "content"}}
-    <div class="profile">
-        <h2>{{.FirstName}} {{.LastName}}</h2>
-        {{if .LinkedIn.Valid}}
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/{{.LinkedIn.String}}">{{.LinkedIn.String}}</a></p>
-        {{else}}
-        <p>LinkedIn: Not Available</p>
-        {{end}}
-    </div>
+    <section class="section">
+        <div class="container">
+            <div class="profile">
+                <h2>{{.FirstName}} {{.LastName}}</h2>
+                {{if .LinkedIn.Valid}}
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/{{.LinkedIn.String}}">{{.LinkedIn.String}}</a></p>
+                {{else}}
+                <p>LinkedIn: Not Available</p>
+                {{end}}
+            </div>
+        </div>
+    </section>
 {{end}}

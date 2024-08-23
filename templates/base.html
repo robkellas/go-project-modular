@@ -9,11 +9,7 @@
 <body>
   {{template "nav.html" .}}
 
-  <section class="section">
-    <div class="container">
-      {{block "content" .}}{{end}}
-    </div>
-  </section>
+  {{block "content" .}}{{end}}
 
   {{template "footer.html" .}}
 
