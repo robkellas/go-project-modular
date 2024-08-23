@@ -2,7 +2,8 @@ package handlers
 
 import (
 	"database/sql"
-	"fmt"
+	"go-project-modular/models" // Import the models package
+	"html/template"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -14,9 +15,8 @@ func GetProfileHandler(db *sql.DB) http.HandlerFunc {
 		vars := mux.Vars(r)
 		profileID := vars["profileID"]
 
-		var name string
-		var age int
-		err := db.QueryRow("SELECT name, age FROM profiles WHERE id = ?", profileID).Scan(&name, &age)
+		var profile models.Profile
+		err := db.QueryRow("SELECT id, first_name, last_name, linkedin FROM profiles WHERE id = ?", profileID).Scan(&profile.ID, &profile.FirstName, &profile.LastName, &profile.LinkedIn)
 		if err != nil {
 			if err == sql.ErrNoRows {
 				http.NotFound(w, r)
@@ -26,6 +26,22 @@ func GetProfileHandler(db *sql.DB) http.HandlerFunc {
 			return
 		}
 
-		fmt.Fprintf(w, "Profile ID: %s\nName: %s\nAge: %d\n", profileID, name, age)
+		// Parse the template files, including the base, header, footer, and profile templates
+		tmpl, err := template.ParseFiles(
+			"templates/base.html",
+			"templates/nav.html",
+			"templates/footer.html",
+			"templates/profile.html",
+		)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		// Execute the template with the profile data
+		err = tmpl.ExecuteTemplate(w, "base.html", profile)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
 	}
 }

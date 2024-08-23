@@ -11,7 +11,7 @@ import (
 func main() {
 	// Open the SQLite database file
 	// The database file will be created if it doesn't exist
-	db, err := sql.Open("sqlite3", "./profiles.db")
+	db, err := sql.Open("sqlite3", "./database.db")
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -23,6 +23,7 @@ func main() {
 
 	// Set up the router and routes and config the trailing slash to redirect to no slash
 	r := mux.NewRouter().StrictSlash(true)
+	r.HandleFunc("/", handlers.HomeHandler()).Methods("GET")
 	r.HandleFunc("/profiles/{profileID}/", handlers.GetProfileHandler(database)).Methods("GET")
 	r.HandleFunc("/profiles/", handlers.GetAllProfilesHandler(database)).Methods("GET")
 

@@ -1,0 +1,17 @@
+{{define "title"}}Profiles{{end}}
+
+{{define "content"}}
+    {{range .}}
+    <div class="container">
+        <h2 class="subtitle"><a href="/profiles/{{.ID}}/">{{.FirstName}} {{.LastName}}</a></h2>
+        {{if .LinkedIn.Valid}}
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/{{.LinkedIn.String}}">{{.LinkedIn.String}}</a></p>
+        {{else}}
+        <p>LinkedIn: Not Available</p>
+        {{end}}
+        <hr>
+    </div>
+    {{else}}
+    <p>No profiles found.</p>
+    {{end}}
+{{end}}
