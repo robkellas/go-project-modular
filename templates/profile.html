@@ -1,10 +1,20 @@
 {{define "title"}}Profile: {{.FirstName}} {{.LastName}}{{end}}
 
 {{define "content"}}
+    <nav class="breadcrumb container" aria-label="breadcrumbs">
+        <ul>
+            <li>
+                <a href="/profiles/" title="profiles">Profiles</a>
+            </li>
+            <li class="is-active">
+                <a href="/profiles/{{.ID}}/" title="profiles" aria-current="page">{{.FirstName}} {{.LastName}}</a>
+            </li>
+        </ul>
+    </nav>
     <section class="section">
         <div class="container">
             <div class="profile">
-                <h2>{{.FirstName}} {{.LastName}}</h2>
+                <h2 class="title">{{.FirstName}} {{.LastName}}</h2>
                 {{if .LinkedIn.Valid}}
                 <p>LinkedIn: <a href="https://www.linkedin.com/in/{{.LinkedIn.String}}">{{.LinkedIn.String}}</a></p>
                 {{else}}

@@ -70,7 +70,7 @@ func GetProjectHandler(db *sql.DB) http.HandlerFunc {
 		}
 
 		// Log before attempting to write to the response
-		log.Println("Executing template for project:", project.Name)
+		// log.Println("Executing template for project:", project.Name)
 
 		// Execute the template with the project data
 		if err = tmpl.ExecuteTemplate(w, "base.html", project); err != nil {

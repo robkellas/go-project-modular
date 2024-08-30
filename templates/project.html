@@ -1,6 +1,16 @@
 {{define "title"}}Project: {{if .Name.Valid}}{{.Name.String}}{{else}}Unnamed Project{{end}}{{end}}
 
 {{define "content"}}
+    <nav class="breadcrumb container" aria-label="breadcrumbs">
+        <ul>
+            <li>
+                <a href="/profiles/" title="profiles">Projects</a>
+            </li>
+            <li class="is-active">
+                <a href="/projects/{{.ID}}/" title="Projects" aria-current="page">{{.Name.String}}</a>
+            </li>
+        </ul>
+    </nav>
     <section class="section">
         <div class="container">
             <div class="project">
