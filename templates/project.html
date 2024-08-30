@@ -1,0 +1,22 @@
+{{define "title"}}Project: {{if .Name.Valid}}{{.Name.String}}{{else}}Unnamed Project{{end}}{{end}}
+
+{{define "content"}}
+    <section class="section">
+        <div class="container">
+            <div class="project">
+                <h2 class="title">{{if .Name.Valid}}{{.Name.String}}{{else}}Unnamed Project{{end}}</h2>
+                <p>Status: {{if .Status.Valid}}{{.Status.String}}{{else}}N/A{{end}}</p>
+                <p>Address: 
+                    {{if .Address.Valid}}{{.Address.String}}{{else}}N/A{{end}}, 
+                    {{if .City.Valid}}{{.City.String}}{{else}}N/A{{end}}, 
+                    {{if .State.Valid}}{{.State.String}}{{else}}N/A{{end}}
+                </p>
+                <p>Units: {{if .Units.Valid}}{{.Units.Int32}}{{else}}N/A{{end}}</p>
+                <p>Stories: {{if .Stories.Valid}}{{.Stories.Int32}}{{else}}N/A{{end}}</p>
+                <p>Square Feet: {{if .SqFt.Valid}}{{.SqFt.Int32}}{{else}}N/A{{end}}</p>
+                <p>Company: {{.Company}}</p>
+                <p>Discipline: {{if .Discipline.Valid}}{{.Discipline.String}}{{else}}N/A{{end}}</p>
+            </div>
+        </div>
+    </section>
+{{end}}

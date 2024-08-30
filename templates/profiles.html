@@ -3,19 +3,35 @@
 {{define "content"}}
     <section class="section">
         <div class="container">
-            {{range .}}
-
-                <h2 class="subtitle"><a href="/profiles/{{.ID}}/">{{.FirstName}} {{.LastName}}</a></h2>
-                {{if .LinkedIn.Valid}}
-                <p>LinkedIn: <a href="https://www.linkedin.com/in/{{.LinkedIn.String}}">{{.LinkedIn.String}}</a></p>
+            <h2 class="title">Profiles</h2>
+            <table class="table is-striped is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>LinkedIn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{range .}}
+                    <tr>
+                        <td>
+                            <a href="/profiles/{{.ID}}/">{{.FirstName}} {{.LastName}}</a>
+                        </td>
+                        <td>
+                            {{if .LinkedIn.Valid}}
+                                <a href="https://www.linkedin.com/in/{{.LinkedIn.String}}">{{.LinkedIn.String}}</a>
+                            {{else}}
+                                Not Available
+                            {{end}}
+                        </td>
+                    </tr>
                 {{else}}
-                <p>LinkedIn: Not Available</p>
+                    <tr>
+                        <td colspan="2">No profiles found.</td>
+                    </tr>
                 {{end}}
-                <hr>
-
-            {{else}}
-                <p>No profiles found.</p>
-            {{end}}
+                </tbody>
+            </table>
         </div>
     </section>
 {{end}}
