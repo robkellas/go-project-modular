@@ -80,6 +80,6 @@ func GetProjectHandler(db *sql.DB) http.HandlerFunc {
 		}
 
 		// Log successful execution
-		log.Println("Successfully rendered project page for:", project.Name)
+		// log.Println("Successfully rendered project page for:", project.Name)
 	}
 }

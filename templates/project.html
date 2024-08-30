@@ -12,9 +12,9 @@
                     {{if .State.Valid}}{{.State.String}}{{else}}N/A{{end}}
                 </p>
                 <p>Units: {{if .Units.Valid}}{{.Units.Int32}}{{else}}N/A{{end}}</p>
-                <p>Stories: {{if .Stories.Valid}}{{.Stories.Int32}}{{else}}N/A{{end}}</p>
+                <p>Stories: {{if .Stories.Valid}}{{.Stories.String}}{{else}}N/A{{end}}</p>
                 <p>Square Feet: {{if .SqFt.Valid}}{{.SqFt.Int32}}{{else}}N/A{{end}}</p>
-                <p>Company: {{.Company}}</p>
+                <p>Company: {{.Company.String}}</p>
                 <p>Discipline: {{if .Discipline.Valid}}{{.Discipline.String}}{{else}}N/A{{end}}</p>
             </div>
         </div>
