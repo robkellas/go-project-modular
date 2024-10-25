@@ -38,7 +38,7 @@
                         <td>{{if .Stories.Valid}}{{.Stories.String}}{{else}}N/A{{end}}</td>
                         <td>{{if .SqFt.Valid}}{{.SqFt.Int32}}{{else}}N/A{{end}}</td>
                         <td><a href="/companies/{{.Company_Id.Int32}}/" title="{{.Company.String}}">{{.Company.String}}</a></td>
-                        <td>{{if .Discipline.Valid}}{{.Discipline.String}}{{else}}N/A{{end}}</td>
+                        <td>{{if .Company_Discipline.Valid}}{{.Company_Discipline.String}}{{else}}N/A{{end}}</td>
                     </tr>
                 {{else}}
                     <tr>

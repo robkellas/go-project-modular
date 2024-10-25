@@ -1,7 +1,7 @@
 {{define "title"}}Profile: {{.FirstName}} {{.LastName}}{{end}}
 
 {{define "content"}}
-    <nav class="breadcrumb container" aria-label="breadcrumbs">
+    <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
         <ul>
             <li>
                 <a href="/profiles/" title="profiles">Profiles</a>
@@ -46,7 +46,6 @@
                 <td>{{ if .Name.Valid }}<a href="/projects/{{ .ID }}/" title="{{ .Name.String }}">{{ .Name.String }}</a>{{ end }}</td>
                 <td>{{ if .Status.Valid }}{{ .Status.String }}{{ else }}N/A{{ end }}</td>
                 <td>
-                    {{ if .Address.Valid }}{{ .Address.String }}{{ else }}N/A{{ end }},
                     {{ if .City.Valid }}{{ .City.String }}{{ else }}N/A{{ end }},
                     {{ if .State.Valid }}{{ .State.String }}{{ else }}N/A{{ end }}
                 </td>
@@ -54,7 +53,7 @@
                 <td>{{ if .Stories.Valid }}{{ .Stories.String }}{{ else }}N/A{{ end }}</td>
                 <td>{{ if .SqFt.Valid }}{{ .SqFt.Int32 }}{{ else }}N/A{{ end }}</td>
                 <td><a href="/companies/{{ .Company_Id.Int32 }}/" title="{{ .Company.String }}">{{ .Company.String }}</a></td>
-                <td>{{ if .Discipline.Valid }}{{ .Discipline.String }}{{ else }}N/A{{ end }}</td>
+                <td>{{ if .Company_Discipline.Valid }}{{ .Company_Discipline.String }}{{ else }}N/A{{ end }}</td>
                 </tr>
                 {{ else }}
                 <tr>

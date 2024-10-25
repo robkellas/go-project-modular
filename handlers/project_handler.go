@@ -30,6 +30,7 @@ func GetProjectHandler(db *sql.DB) http.HandlerFunc {
         p.stories,
         p.sqft,
         c.id,
+				c.name,
         c.discipline
       FROM projects AS p
       LEFT JOIN project_facts AS pf ON pf.project_id = p.id
@@ -46,7 +47,8 @@ func GetProjectHandler(db *sql.DB) http.HandlerFunc {
       &project.Stories,
       &project.SqFt,
       &project.Company_Id,
-      &project.Discipline,
+			&project.Company,
+      &project.Company_Discipline,
     )
     if err != nil {
       // Handle the case where no project is found

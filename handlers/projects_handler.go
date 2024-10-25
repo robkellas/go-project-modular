@@ -57,7 +57,7 @@ func GetAllProjectsHandler(db *sql.DB) http.HandlerFunc {
 				&project.SqFt,
 				&project.Company_Id,
 				&project.Company,
-				&project.Discipline,
+				&project.Company_Discipline,
 			)
 			if err != nil {
 				log.Println("Error scanning project row:", err)

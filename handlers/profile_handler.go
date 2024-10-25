@@ -32,24 +32,26 @@ func GetProfileHandler(db *sql.DB) http.HandlerFunc {
 
     // Fetch projects for the profile
     rows, err := db.Query(`
-      SELECT
-				pr.id,
-        pr."name",
-				c.id,
-        c."name",
-        pr.city,
-        pr."state",
-        pr.units,
-        pr.sqft,
-        pr.stories
-      FROM
-        profiles AS p
-      JOIN project_facts AS pf ON pf.people_id = p.id
-      JOIN projects AS pr ON pr.id = pf.project_id
-      JOIN companies AS c ON c.id = pf.company_id
-      WHERE
-        p.id = ?
-    `, profile.ID)
+				SELECT
+						pr.id,
+						pr."name",
+						pr."status",
+						c.id,
+						c."name",
+						pr.city,
+						pr."state",
+						pr.units,
+						pr.sqft,
+						pr.stories,
+						c.discipline
+				FROM
+						profiles AS p
+				JOIN project_facts AS pf ON pf.people_id = p.id
+				JOIN projects AS pr ON pr.id = pf.project_id
+				JOIN companies AS c ON c.id = pf.company_id
+				WHERE
+						p.id = ?
+		`, profile.ID)
     if err != nil {
       http.Error(w, err.Error(), http.StatusInternalServerError)
       return
@@ -61,15 +63,17 @@ func GetProfileHandler(db *sql.DB) http.HandlerFunc {
     for rows.Next() {
       var project models.Project
       err := rows.Scan(
-        &project.ID,
+				&project.ID,
 				&project.Name,
+				&project.Status,
 				&project.Company_Id,
-        &project.Company,
-        &project.City,
-        &project.State,
-        &project.Units,
-        &project.SqFt,
-        &project.Stories,
+				&project.Company,
+				&project.City,
+				&project.State,
+				&project.Units,
+				&project.SqFt,
+				&project.Stories,
+				&project.Company_Discipline,
       )
       if err != nil {
         http.Error(w, err.Error(), http.StatusInternalServerError)
