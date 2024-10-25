@@ -4,7 +4,7 @@
     <nav class="breadcrumb container" aria-label="breadcrumbs">
         <ul>
             <li>
-                <a href="/profiles/" title="profiles">Projects</a>
+                <a href="/projects/" title="profiles">Projects</a>
             </li>
             <li class="is-active">
                 <a href="/projects/{{.ID}}/" title="Projects" aria-current="page">{{.Name.String}}</a>
@@ -13,20 +13,60 @@
     </nav>
     <section class="section">
         <div class="container">
-            <div class="project">
-                <h2 class="title">{{if .Name.Valid}}{{.Name.String}}{{else}}Unnamed Project{{end}}</h2>
-                <p>Status: {{if .Status.Valid}}{{.Status.String}}{{else}}N/A{{end}}</p>
-                <p>Address: 
-                    {{if .Address.Valid}}{{.Address.String}}{{else}}N/A{{end}}, 
-                    {{if .City.Valid}}{{.City.String}}{{else}}N/A{{end}}, 
-                    {{if .State.Valid}}{{.State.String}}{{else}}N/A{{end}}
-                </p>
-                <p>Units: {{if .Units.Valid}}{{.Units.Int32}}{{else}}N/A{{end}}</p>
-                <p>Stories: {{if .Stories.Valid}}{{.Stories.String}}{{else}}N/A{{end}}</p>
-                <p>Square Feet: {{if .SqFt.Valid}}{{.SqFt.Int32}}{{else}}N/A{{end}}</p>
-                <p>Company: {{.Company.String}}</p>
-                <p>Discipline: {{if .Discipline.Valid}}{{.Discipline.String}}{{else}}N/A{{end}}</p>
-            </div>
+            <h1 class="title">{{ .Name.String }}</h2>
+            <table class="table is-striped is-fullwidth">
+            <thead>
+                <tr>
+                <th>Status</th>
+                <th>Location</th>
+                <th>Units</th>
+                <th>Stories</th>
+                <th>Square Feet</th>
+                <th>Company</th>
+                <th>Discipline</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>{{ if .Status.Valid }}{{ .Status.String }}{{ else }}N/A{{ end }}</td>
+                <td>
+                    {{ if .Address.Valid }}{{ .Address.String }}{{ else }}N/A{{ end }},
+                    {{ if .City.Valid }}{{ .City.String }}{{ else }}N/A{{ end }},
+                    {{ if .State.Valid }}{{ .State.String }}{{ else }}N/A{{ end }}
+                </td>
+                <td>{{ if .Units.Valid }}{{ .Units.Int32 }}{{ else }}N/A{{ end }}</td>
+                <td>{{ if .Stories.Valid }}{{ .Stories.String }}{{ else }}N/A{{ end }}</td>
+                <td>{{ if .SqFt.Valid }}{{ .SqFt.Int32 }}{{ else }}N/A{{ end }}</td>
+                <td><a href="/companies/{{ .Company_Id.Int32 }}/" title="{{ .Company.String }}">{{ .Company.String }}</a></td>
+                <td>{{ if .Discipline.Valid }}{{ .Discipline.String }}{{ else }}N/A{{ end }}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+        <h2 class="subtitle">People who worked on this project</h2>
+            <table class="table is-striped is-fullwidth">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>LinkedIn</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ range .Profiles }}
+                <tr>
+                <td><a href="/profiles/{{ .ID }}">{{ .FirstName }} {{ .LastName }}</a></td>
+                <td>{{ if .LinkedIn.Valid }}<a href="{{ .LinkedIn.String }}">{{ .LinkedIn.String }}</a>{{ else }}N/A{{ end }}</td>
+                </tr>
+                {{ else }}
+                <tr>
+                <td colspan="2">No profiles found for this project.</td>
+                </tr>
+                {{ end }}
+            </tbody>
+            </table>
         </div>
     </section>
 {{end}}

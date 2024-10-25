@@ -23,4 +23,46 @@
             </div>
         </div>
     </section>
+    
+    <section class="section">
+        <div class="container">
+            <h2 class="subtitle">Projects</h2>
+            <table class="table is-striped is-fullwidth">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Location</th>
+                <th>Units</th>
+                <th>Stories</th>
+                <th>Square Feet</th>
+                <th>Company</th>
+                <th>Discipline</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ range .Projects }}
+                <tr>
+                <td>{{ if .Name.Valid }}<a href="/projects/{{ .ID }}/" title="{{ .Name.String }}">{{ .Name.String }}</a>{{ end }}</td>
+                <td>{{ if .Status.Valid }}{{ .Status.String }}{{ else }}N/A{{ end }}</td>
+                <td>
+                    {{ if .Address.Valid }}{{ .Address.String }}{{ else }}N/A{{ end }},
+                    {{ if .City.Valid }}{{ .City.String }}{{ else }}N/A{{ end }},
+                    {{ if .State.Valid }}{{ .State.String }}{{ else }}N/A{{ end }}
+                </td>
+                <td>{{ if .Units.Valid }}{{ .Units.Int32 }}{{ else }}N/A{{ end }}</td>
+                <td>{{ if .Stories.Valid }}{{ .Stories.String }}{{ else }}N/A{{ end }}</td>
+                <td>{{ if .SqFt.Valid }}{{ .SqFt.Int32 }}{{ else }}N/A{{ end }}</td>
+                <td><a href="/companies/{{ .Company_Id.Int32 }}/" title="{{ .Company.String }}">{{ .Company.String }}</a></td>
+                <td>{{ if .Discipline.Valid }}{{ .Discipline.String }}{{ else }}N/A{{ end }}</td>
+                </tr>
+                {{ else }}
+                <tr>
+                <td colspan="8">No projects found.</td>
+                </tr>
+                {{ end }}
+            </tbody>
+            </table>
+        </div>
+    </section>
 {{end}}

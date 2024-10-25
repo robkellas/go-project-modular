@@ -29,7 +29,9 @@ func GetAllProjectsHandler(db *sql.DB) http.HandlerFunc {
 			LEFT JOIN project_facts AS f ON f.project_id = p.id
 			LEFT JOIN companies AS c ON c.id = f.company_id
 			LEFT JOIN profiles AS pr ON pr.id = f.people_id
-			GROUP BY p.name;`)
+			GROUP BY p.name
+			ORDER BY p.id ASC
+			;`)
 		if err != nil {
 			log.Println("Error querying projects:", err)
 			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
