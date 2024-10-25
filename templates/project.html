@@ -14,73 +14,77 @@
     <section class="section">
         <div class="container">
             <h1 class="title">{{ .Name.String }}</h2>
-            <table class="table is-striped is-fullwidth">
-            <thead>
-                <tr>
-                <th>Status</th>
-                <th>Location</th>
-                <th>Units</th>
-                <th>Stories</th>
-                <th>Square Feet</th>
-                <th>Company</th>
-                <th>Discipline</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td>{{ if .Status.Valid }}{{ .Status.String }}{{ else }}N/A{{ end }}</td>
-                <td>
-                    {{ if .Address.Valid }}{{ .Address.String }}{{ else }}N/A{{ end }}
-                </td>
-                <td>{{ if .Units.Valid }}{{ .Units.Int32 }}{{ else }}N/A{{ end }}</td>
-                <td>{{ if .Stories.Valid }}{{ .Stories.String }}{{ else }}N/A{{ end }}</td>
-                <td>{{ if .SqFt.Valid }}{{ .SqFt.Int32 }}{{ else }}N/A{{ end }}</td>
-                <td>
-                    {{ if .Company.Valid }}
-                        <a href="/companies/{{ .Company_Id.Int32 }}/" title="{{ .Company.String }}">
-                            {{ .Company.String }}
-                        </a>
-                    {{ else }}
-                    N/A
-                    {{ end }}
-                </td>
-                <td>{{ if .Company_Discipline.Valid }}{{ .Company_Discipline.String }}{{ else }}N/A{{ end }}</td>
-                </tr>
-            </tbody>
-            </table>
+            <div class="table-container">
+                <table class="table is-striped is-fullwidth">
+                <thead>
+                    <tr>
+                    <th>Status</th>
+                    <th>Location</th>
+                    <th>Units</th>
+                    <th>Stories</th>
+                    <th>Square Feet</th>
+                    <th>Company</th>
+                    <th>Discipline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>{{ if .Status.Valid }}{{ .Status.String }}{{ else }}N/A{{ end }}</td>
+                    <td>
+                        {{ if .Address.Valid }}{{ .Address.String }}{{ else }}N/A{{ end }}
+                    </td>
+                    <td>{{ if .Units.Valid }}{{ .Units.Int32 }}{{ else }}N/A{{ end }}</td>
+                    <td>{{ if .Stories.Valid }}{{ .Stories.String }}{{ else }}N/A{{ end }}</td>
+                    <td>{{ if .SqFt.Valid }}{{ .SqFt.Int32 }}{{ else }}N/A{{ end }}</td>
+                    <td>
+                        {{ if .Company.Valid }}
+                            <a href="/companies/{{ .Company_Id.Int32 }}/" title="{{ .Company.String }}">
+                                {{ .Company.String }}
+                            </a>
+                        {{ else }}
+                        N/A
+                        {{ end }}
+                    </td>
+                    <td>{{ if .Company_Discipline.Valid }}{{ .Company_Discipline.String }}{{ else }}N/A{{ end }}</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
         </div>
     </section>
     <section class="section">
         <div class="container">
         <h2 class="subtitle">People who worked on this project</h2>
-            <table class="table is-striped is-fullwidth">
-            <thead>
-                <tr>
-                <th>Name</th>
-                <th>LinkedIn</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{ range .Profiles }}
-                <tr>
-                <td><a href="/profiles/{{ .ID }}">{{ .FirstName }} {{ .LastName }}</a></td>
-                <td>
-                    {{ if .LinkedIn.Valid }}
-                        <a href="https://www.linkedin.com/in/{{ .LinkedIn.String }}">
-                            https://www.linkedin.com/in/{{ .LinkedIn.String }}
-                        </a>
+            <div class="table-container">
+                <table class="table is-striped is-fullwidth">
+                <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>LinkedIn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ range .Profiles }}
+                    <tr>
+                    <td><a href="/profiles/{{ .ID }}">{{ .FirstName }} {{ .LastName }}</a></td>
+                    <td>
+                        {{ if .LinkedIn.Valid }}
+                            <a href="https://www.linkedin.com/in/{{ .LinkedIn.String }}">
+                                https://www.linkedin.com/in/{{ .LinkedIn.String }}
+                            </a>
+                        {{ else }}
+                        N/A
+                        {{ end }}
+                    </td>
+                    </tr>
                     {{ else }}
-                    N/A
+                    <tr>
+                    <td colspan="2">No profiles found for this project.</td>
+                    </tr>
                     {{ end }}
-                </td>
-                </tr>
-                {{ else }}
-                <tr>
-                <td colspan="2">No profiles found for this project.</td>
-                </tr>
-                {{ end }}
-            </tbody>
-            </table>
+                </tbody>
+                </table>
+            </div>
         </div>
     </section>
 {{end}}

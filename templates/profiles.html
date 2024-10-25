@@ -11,34 +11,36 @@
     <section class="section">
         <div class="container">
             <h2 class="title">Profiles</h2>
-            <table class="table is-striped is-fullwidth">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>LinkedIn</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {{range .}}
-                    <tr>
-                        <td>
-                            <a href="/profiles/{{.ID}}/">{{.FirstName}} {{.LastName}}</a>
-                        </td>
-                        <td>
-                            {{if .LinkedIn.Valid}}
-                                <a href="https://www.linkedin.com/in/{{.LinkedIn.String}}">{{.LinkedIn.String}}</a>
-                            {{else}}
-                                Not Available
-                            {{end}}
-                        </td>
-                    </tr>
-                {{else}}
-                    <tr>
-                        <td colspan="2">No profiles found.</td>
-                    </tr>
-                {{end}}
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table class="table is-striped is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>LinkedIn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{range .}}
+                        <tr>
+                            <td>
+                                <a href="/profiles/{{.ID}}/">{{.FirstName}} {{.LastName}}</a>
+                            </td>
+                            <td>
+                                {{if .LinkedIn.Valid}}
+                                    <a href="https://www.linkedin.com/in/{{.LinkedIn.String}}">{{.LinkedIn.String}}</a>
+                                {{else}}
+                                    Not Available
+                                {{end}}
+                            </td>
+                        </tr>
+                    {{else}}
+                        <tr>
+                            <td colspan="2">No profiles found.</td>
+                        </tr>
+                    {{end}}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 {{end}}
