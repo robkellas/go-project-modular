@@ -1,19 +1,21 @@
 {{define "title"}}Project: {{if .Name.Valid}}{{.Name.String}}{{else}}Unnamed Project{{end}}{{end}}
 
 {{define "content"}}
-    <nav class="breadcrumb has-succeeds-separator pl-3 is-small" aria-label="breadcrumbs">
-        <ul>
-            <li>
-                <a href="/projects/" title="profiles">Projects</a>
-            </li>
-            <li class="is-active">
-                <a href="/projects/{{.ID}}/" title="Projects" aria-current="page">{{.Name.String}}</a>
-            </li>
-        </ul>
-    </nav>
+    <div class="container">
+        <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+            <ul>
+                <li>
+                    <a href="/projects/" title="profiles">Projects</a>
+                </li>
+                <li class="is-active">
+                    <a href="/projects/{{.ID}}/" title="Projects" aria-current="page">{{.Name.String}}</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
     <section class="section">
         <div class="container">
-            <h1 class="title">{{ .Name.String }}</h2>
+            <h1 class="title is-2">{{ .Name.String }}</h2>
             <div class="table-container">
                 <table class="table is-striped is-fullwidth">
                 <thead>
@@ -54,7 +56,7 @@
     </section>
     <section class="section">
         <div class="container">
-        <h2 class="subtitle">People who worked on this project</h2>
+        <h2 class="subtitle is-4">People who worked on this project</h2>
             <div class="table-container">
                 <table class="table is-striped is-fullwidth">
                 <thead>

@@ -1,20 +1,22 @@
 {{define "title"}}Profile: {{.FirstName}} {{.LastName}}{{end}}
 
 {{define "content"}}
-    <nav class="breadcrumb has-succeeds-separator pl-3 is-small" aria-label="breadcrumbs">
-        <ul>
-            <li>
-                <a href="/profiles/" title="profiles">Profiles</a>
-            </li>
-            <li class="is-active">
-                <a href="/profiles/{{.ID}}/" title="profiles" aria-current="page">{{.FirstName}} {{.LastName}}</a>
-            </li>
-        </ul>
-    </nav>
+    <div class="container">
+        <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+            <ul>
+                <li>
+                    <a href="/profiles/" title="profiles">Profiles</a>
+                </li>
+                <li class="is-active">
+                    <a href="/profiles/{{.ID}}/" title="profiles" aria-current="page">{{.FirstName}} {{.LastName}}</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
     <section class="section">
         <div class="container">
             <div class="profile">
-                <h2 class="title">{{.FirstName}} {{.LastName}}</h2>
+                <h2 class="title is-2">{{.FirstName}} {{.LastName}}</h2>
                 {{if .LinkedIn.Valid}}
                 <p>LinkedIn: <a href="https://www.linkedin.com/in/{{.LinkedIn.String}}">https://www.linkedin.com/in/{{ .LinkedIn.String }}</a></p>
                 {{else}}
@@ -26,7 +28,7 @@
     
     <section class="section">
         <div class="container">
-            <h2 class="subtitle">Projects</h2>
+            <h2 class="subtitle is-4">{{.FirstName}}'s projects</h2>
             <div class="table-container">
                 <table class="table is-striped is-fullwidth">
                 <thead>
