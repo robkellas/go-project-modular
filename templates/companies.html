@@ -1,0 +1,44 @@
+{{ define "title" }}Companies{{ end }}
+
+{{ define "content" }}
+<div class="container">
+    <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+        <ul>
+            <li class="is-active">
+                <a href="/companies/" title="Companies" aria-current="page">Companies</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<section class="section">
+    <div class="container">
+        <h2 class="title is-2">Companies</h2>
+        <div class="table-container">
+            <table class="table is-striped is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Discipline</th>
+                        <th>Headquarters</th>
+                        <th>Website</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ range . }}
+                    <tr>
+                        <td>{{ if .Name.Valid }}<a href="/companies/{{ .ID }}/" title="{{ .Name.String }}">{{ .Name.String }}</a>{{ else }}Unnamed Company{{ end }}</td>
+                        <td>{{ if .Discipline.Valid }}{{ .Discipline.String }}{{ else }}N/A{{ end }}</td>
+                        <td>{{ if .Headquarters.Valid }}{{ .Headquarters.String }}{{ else }}N/A{{ end }}</td>
+                        <td>{{ if .Website.Valid }}<a href="{{ .Website.String }}">{{ .Website.String }}</a>{{ else }}N/A{{ end }}</td>
+                    </tr>
+                    {{ else }}
+                    <tr>
+                        <td colspan="4">No companies found.</td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{{ end }}

@@ -1,0 +1,69 @@
+{{ define "title" }}Company: {{ .Company.Name }}{{ end }}
+
+{{ define "content" }}
+<div class="container">
+  <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+    <ul>
+      <li>
+        <a href="/companies/" title="Companies">Companies</a>
+      </li>
+      <li class="is-active">
+        <a href="/companies/{{ .Company.ID }}/" title="Companies" aria-current="page">{{ .Company.Name.String }}</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<section class="section">
+  <div class="container">
+    <div class="company">
+      <h2 class="title is-2">{{ .Company.Name.String }}</h2>
+      <p>Discipline: {{ .Company.Discipline.String }}</p>
+      <p>Headquarters: {{ .Company.Headquarters.String }}</p>
+      {{ if .Company.Website.Valid }}
+      <p>Website: <a href="{{ .Company.Website.String }}">{{ .Company.Website.String }}</a></p>
+      {{ else }}
+      <p>Website: Not Available</p>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="subtitle is-4">Projects</h2>
+    <div class="table-container">
+      <table class="table is-striped is-fullwidth">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Units</th>
+            <th>Stories</th>
+            <th>Square Feet</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range .Projects }}
+          <tr>
+            <td>{{ if .Name.Valid }}<a href="/projects/{{ .ID }}/" title="{{ .Name.String }}">{{ .Name.String }}</a>{{ end }}</td>
+            <td>{{ if .Status.Valid }}{{ .Status.String }}{{ else }}N/A{{ end }}</td>
+            <td>
+              {{ if .City.Valid }}{{ .City.String }}{{ else }}N/A{{ end }},
+              {{ if .State.Valid }}{{ .State.String }}{{ else }}N/A{{ end }}
+            </td>
+            <td>{{ if .Units.Valid }}{{ .Units.Int32 }}{{ else }}N/A{{ end }}</td>
+            <td>{{ if .Stories.Valid }}{{ .Stories.String }}{{ else }}N/A{{ end }}</td>
+            <td>{{ if .SqFt.Valid }}{{ .SqFt.Int32 }}{{ else }}N/A{{ end }}</td>
+          </tr>
+          {{ else }}
+          <tr>
+            <td colspan="8">No projects found.</td>
+          </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{{ end }}

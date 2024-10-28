@@ -2,7 +2,6 @@ package models
 
 import "database/sql"
 
-// Profile represents the data structure for a profile
 type Profile struct {
   ID        int            `json:"id"`
   FirstName string         `json:"first_name"`

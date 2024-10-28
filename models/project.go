@@ -1,8 +1,6 @@
 package models
 
 import "database/sql"
-
-// Project represents the data structure for a project
 type Project struct {
   ID                    int            `json:"id"`
   Name                  sql.NullString `json:"name"`

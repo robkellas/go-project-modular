@@ -5,14 +5,14 @@
         <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
             <ul>
                 <li class="is-active">
-                    <a href="/profiles/" title="profiles" aria-current="page">Profiles</a>
+                    <a href="/people/" title="profiles" aria-current="page">People</a>
                 </li>
             </ul>
         </nav>
     </div>
     <section class="section">
         <div class="container">
-            <h2 class="title is-2">Profiles</h2>
+            <h2 class="title is-2">People</h2>
             <div class="table-container">
                 <table class="table is-striped is-fullwidth">
                     <thead>
@@ -25,7 +25,7 @@
                     {{range .}}
                         <tr>
                             <td>
-                                <a href="/profiles/{{.ID}}/">{{.FirstName}} {{.LastName}}</a>
+                                <a href="/people/{{.ID}}/">{{.FirstName}} {{.LastName}}</a>
                             </td>
                             <td>
                                 {{if .LinkedIn.Valid}}

@@ -68,7 +68,7 @@
                 <tbody>
                     {{ range .Profiles }}
                     <tr>
-                    <td><a href="/profiles/{{ .ID }}">{{ .FirstName }} {{ .LastName }}</a></td>
+                    <td><a href="/people/{{ .ID }}">{{ .FirstName }} {{ .LastName }}</a></td>
                     <td>
                         {{ if .LinkedIn.Valid }}
                             <a href="https://www.linkedin.com/in/{{ .LinkedIn.String }}">
