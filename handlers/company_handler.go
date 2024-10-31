@@ -41,7 +41,7 @@ func GetCompanyHandler(db *sql.DB) http.HandlerFunc {
 		}
 
 		// Fetch projects associated with the company
-		rows, err := db.Query(`SELECT 
+		rows, err := db.Query(`SELECT DISTINCT
 			p.id, 
 			p.name,
 			p.status,
